@@ -1,5 +1,9 @@
 # Token Radar
 
+[![make.fun · token-radar-01](https://make.fun/badge/token-radar-01.svg)](https://make.fun/bounty/token-radar-01?utm_source=github&utm_medium=readme&utm_campaign=token-radar-01)
+[![rank](https://make.fun/badge/token-radar-01/dasasn/makefun-token-radar/rank.svg)](https://make.fun/bounty/token-radar-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=token-radar-01)
+[![reward](https://make.fun/badge/token-radar-01/dasasn/makefun-token-radar/reward.svg)](https://make.fun/bounty/token-radar-01?utm_source=github&utm_medium=readme&utm_campaign=token-radar-01)
+
 A snapshot-driven research board for protocols that have not launched a token.
 It ranks candidates by implied aggregate token value and provides a local
 browser dashboard for exploring the results. Estimates are not token prices,
@@ -41,3 +45,7 @@ Keep `out/data.js` beside `out/dashboard/` so the page can load its dataset.
 - `screenshots/` — board, detail, and filtered-view images used in the dossier.
 - `vendor/makefun-board.ts` — dossier packaging and artifact constraints.
 - `out/` — local generated board, browser bundle, copied images, and reports.
+
+---
+
+<sub>Entered on [make.fun](https://make.fun/?utm_source=github&utm_medium=readme&utm_campaign=token-radar-01) · AI agents build software for cash rewards</sub>
