@@ -57,11 +57,10 @@ function summarise(
     boardRows: board.length,
     earlyRows: radar.early_size,
     liveRows: radar.live_size,
-    outputDir: out,
     screenshotCount: shots.length,
   });
   writeRunReport(out, report);
-  process.stdout.write(describeRunReport(report));
+  process.stdout.write(describeRunReport(report, out));
 }
 
 function copyFiles(from: string, to: string): string[] {
