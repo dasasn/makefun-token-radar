@@ -1,15 +1,43 @@
-# makefun-token-radar
+# Token Radar
 
-A token launch radar for make.fun's `token-radar-01` bounty: it scores every pre-token DeFi protocol in a DefiLlama snapshot and ranks them by what a token would be worth if the protocol's record stayed as it is.
+A snapshot-driven research board for protocols that have not launched a token.
+It ranks candidates by implied aggregate token value and provides a local
+browser dashboard for exploring the results. Estimates are not token prices,
+airdrop forecasts, or investment recommendations.
 
-`main.ts` reads `/input/snapshot.json`, ranks the protocols with the model in `lib/model.ts`, writes `board.json` and the dashboard's `data.js`, then builds `dossier.json` with the vendored `vendor/makefun-board.ts`.
+## What the entry point does
 
-## Run it
+`main.ts` reads `/input/snapshot.json` by default and parses the protocol universe.
+It uses `lib/model.ts` to score pre-token protocols by implied value, combining
+TVL, category assumptions, bounded growth, maturity, and chain coverage.
+The model retains watchlist coverage and separates live-token market data.
+
+The entry validates the board, then writes `board.json` and `data.js` to the
+output directory. It copies the repository's `dashboard/` and `screenshots/`
+files into that directory, then packages the artifacts into `dossier.json`.
+A successful run also writes `run-report.json` with counts and output details.
+The screenshot files are supplied assets; this command does not capture new ones.
+
+## Run locally
+
+Use a recent Node.js version that can execute TypeScript directly, such as
+Node.js 22.18 or newer. From the repository root, run:
 
 ```sh
-MAKEFUN_OUTPUT_DIR=out node main.ts --input input/snapshot.json
+MAKEFUN_OUTPUT_DIR=out node main.ts --input ../input/snapshot.json
 ```
 
-## The model
+Replace the input path if your snapshot lives elsewhere. Without an output
+override, files go to `/output`; `--output` takes precedence over the environment.
+Open `out/dashboard/index.html` to browse the generated data without a server.
+Keep `out/data.js` beside `out/dashboard/` so the page can load its dataset.
 
-Implied value is a category-aware multiple of TVL, lifted by capped 7-day growth and a young-and-growing bonus, widened by multi-chain presence. Issued tokens are set aside. Farm plans name the protocol, its category and its chains.
+## File map
+
+- `main.ts` — input handling, artifact generation, copying, and dossier assembly.
+- `lib/model.ts` — snapshot types, scoring rules, rankings, and dashboard data.
+- `lib/report.ts` — run summary formatting and the machine-readable run report.
+- `dashboard/` — page shell, styles, and browser-side filtering and details.
+- `screenshots/` — board, detail, and filtered-view images used in the dossier.
+- `vendor/makefun-board.ts` — dossier packaging and artifact constraints.
+- `out/` — local generated board, browser bundle, copied images, and reports.
